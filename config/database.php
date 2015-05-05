@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'sqlsrv',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -77,10 +77,10 @@ return [
 
 		'sqlsrv' => [
 			'driver'   => 'sqlsrv',
-			'host'     => env('DB_HOST', 'localhost'),
-			'database' => env('DB_DATABASE', 'forge'),
-			'username' => env('DB_USERNAME', 'forge'),
-			'password' => env('DB_PASSWORD', ''),
+			'host'     => env('DB_HOST', '190.147.21.195,8888'),
+			'database' => env('DB_DATABASE', 'dbfirefly'),
+			'username' => env('DB_USERNAME', 'fireflyuser'),
+			'password' => env('DB_PASSWORD', 'NataJP27'),
 			'prefix'   => '',
 		],
 

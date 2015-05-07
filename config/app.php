@@ -145,6 +145,13 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		/*
+		* Vendor Service Provider
+
+		*/
+		'Collective\Html\HtmlServiceProvider',
+
+
 	],
 
 	/*
@@ -192,6 +199,15 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+
+		/*
+		* vendor aliases
+		*/
+
+
+		 'Form' => 'Collective\Html\FormFacade',
+      'Html' => 'Collective\Html\HtmlFacade',
+
 
 	],
 

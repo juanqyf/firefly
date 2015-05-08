@@ -1,9 +1,16 @@
 <?php namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\EditUserRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Route;
+
+use Illuminate\Support\Facades\Request;
+
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 use App\User;
 
@@ -16,12 +23,9 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		//
 		
-		 $users=User::paginate();
-		 //dd($users);
+		 $users=User::Name( request::get('name'))->paginate(5);
 		 return view('admin.users.index',compact('users'));
-
 	}
 
 	/**
@@ -31,7 +35,7 @@ class UserController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('admin.users.create');
 	}
 
 	/**
@@ -39,9 +43,14 @@ class UserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreateUserRequest $request	)
 	{
-		//
+
+		$user=User::create($request->all());
+
+		
+		$redirect = redirect()->route('admin.users.index');
+		return $redirect;
 	}
 
 	/**
@@ -64,6 +73,9 @@ class UserController extends Controller {
 	public function edit($id)
 	{
 		//
+		$user=User::findOrFail($id);
+
+		return view('admin.users.edit', compact('user'));
 	}
 
 	/**
@@ -72,9 +84,15 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(EditUserRequest $request,$id)
 	{
 		//
+		$user=User::findOrFail($id);
+		$user->fill($request->all());
+		$user->save();
+
+		$redirect = redirect()->route('admin.users.index');
+		return $redirect;
 	}
 
 	/**
@@ -85,7 +103,25 @@ class UserController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+
+		//dd("Eliminado".$id);
+		$user=User::findOrFail($id);
+
+		$message=$user->fullName . ' has been delete';
+
+		
+
+		$user->delete();
+		if(request::ajax()){
+					return response()->json([
+						'message'=>$message
+						]);
+
+		}
+		//User::destroy($id);
+		Session::flash('message', $message);
+		return redirect()->route('admin.users.index');
+
 	}
 
 }

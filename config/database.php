@@ -31,7 +31,7 @@ return [
 	/*
 	|--------------------------------------------------------------------------
 	| Database Connections
-	|--------------------------------------------------------------------------
+	|-------------------------------------------------------------------------
 	|
 	| Here are each of the database connections setup for your application.
 	| Of course, examples of configuring each database platform that is
@@ -77,7 +77,7 @@ return [
 
 		'sqlsrv' => [
 			'driver'   => 'sqlsrv',
-			'host'     => env('DB_HOST', '190.147.21.195,8888'),
+			'host'     => env('DB_HOST', '192.168.230.1, 8888'), //'190.147.21.195,8888'
 			'database' => env('DB_DATABASE', 'dbfirefly'),
 			'username' => env('DB_USERNAME', 'fireflyuser'),
 			'password' => env('DB_PASSWORD', 'NataJP27'),

@@ -20,7 +20,8 @@ class WelcomeController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('guest');
+		//$this->middleware('guest');
+		$this->middleware('auth');
 	}
 
 	/**
@@ -30,7 +31,9 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+		//return view('welcome');
+		return view('home');
 	}
 
 }
+
